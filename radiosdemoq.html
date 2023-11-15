@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="author" content=" jordan">
+<title>S</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+
+
+
+:root {
+ --primary:#f33449;
+ --white:#fff;
+ --grey:#555;
+}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+body {
+font-family: 'Open Sans', sans-serif;
+font-size:1rem;
+background:#000;
+}
+body.dark {
+ --white:#000;
+ --grey:#fff;
+}
+a,a:hover {
+text-decoration:none;
+}
+img{
+ max-width:100%;
+}
+p{
+ color:var(--grey);
+}
+.sec {
+ background:var(--white);
+ width:100%;
+ min-height:100vh;
+ max-width:460px;
+ margin:auto;
+ animation:fadeIn 0.5s ease;
+}
+@keyframes fadeIn{
+ 0%{
+  opacity:0;
+ }
+ 100%{
+ opacity:1;
+ }
+}
+button{
+ display:inline-block;
+ outline:none;
+ border:none;
+ background:transparent;
+}
+.sec-1 {
+ padding:20px;
+ display:flex;
+ justify-content: center;
+ text-align: center;
+ min-height:100vh;
+}
+
+.sec-1 svg {
+ width:90%;
+ height:20%;
+}
+.sec-1 h1 {
+  font-size:2.5rem;
+}
+.sec-1 h1 > span {
+ color: deeppink;
+}
+.sec-1 p {
+ margin:10px 0 25px;
+ color:#666;
+ font-size:14px;
+}
+.sec-1 button {
+ padding:12px 25px;
+ background: deeppink;
+ color:#fff;
+ border-radius:25px;
+}
+.hide {
+ display:none;
+}
+.header {
+ margin:0 10px;
+ padding:8px 10px;
+ display:flex;
+ justify-content:space-between;
+ border-bottom:2px solid #ccc;
+ color:var(--grey);
+}
+.header button {
+ color:var(--white);
+ padding:6px 10px;
+ font-size:14px;
+ cursor:pointer;
+ background:#111;
+ border-radius:30px;
+}
+.header button:hover {
+ opacity:0.7;
+}
+body.dark .header button {
+ background:#fff;
+}
+.music-list {
+ padding-bottom:70px;
+}
+.music {
+ padding:10px 10px;
+ display:flex;
+ align-items: center;
+ width:100%;
+ border-bottom:1px solid #dedede;
+ cursor:pointer;
+ color:var(--grey);
+}
+.music.active {
+ color:var(--primary);
+}
+.list-thumbnail {
+ height:60px;
+ width:60px;
+ border-radius:4px;
+ overflow:hidden;
+}
+.list-content {
+ flex:1;
+ padding:0 15px;
+}
+.list-btn {
+ width:50px;
+ height:50px;
+}
+.list-btn > i {
+ font-size:40px;
+ color:var(--grey);
+}
+.music.active .list-btn > i {
+ display:none;
+}
+.music .equalize {
+ display:none;
+}
+.music.active .equalize {
+ display:block;
+}
+.music-list .equalize span {
+ display:inline-block;
+ height:18px;
+ width:3px;
+ margin:1px;
+ background:var(--primary);
+ animation:equalize 1s linear infinite;
+ transform-origin: bottom;
+}
+ .equalize.pause span {
+  animation-play-state:paused!important;
+}
+.equalize span:nth-child(2) {
+ animation-delay:.3s;
+} 
+.equalize span:nth-child(3) {
+ animation-delay:.6s;
+} 
+@keyframes equalize {
+ 0%, 100%{
+  transform:scaleY(1);
+ }
+ 50%{
+  transform:scaleY(0.3);
+ }
+}
+
+.players {
+ position:fixed;
+ width:100%;
+ max-width:460px;
+ left:0;
+ bottom:0;
+ z-index:5;
+ background:var(--white);
+ color:#555;
+ transition:300ms;
+}
+.players.active {
+ height:100vh;
+ top:0;
+ text-align:center;
+ padding:0 20px;
+ overflow-y:scroll;
+ animation:fadeIn 0.5s ease;
+ animation-fill-mode:both;
+}
+.bottom {
+ display:flex;
+ align-items: center;
+ height:70px;
+ padding:5px 10px;
+ border-top:1px solid #ccc;
+}
+.players.active .bottom {
+ display:block;
+ border-top:none;
+ height:auto;
+ padding:0;
+ margin-bottom:25px;
+}
+.thumbnail {
+ height:60px;
+ width:60px;
+ overflow:hidden;
+ border-radius:4px;
+}
+.players.active .thumbnail{
+ width:220px;
+ margin:40px auto;
+ height:220px;
+ border-radius:50%;
+ background:#000;
+ box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.players.active .thumbnail.spin {
+ box-shadow: none;
+ animation:spin 4s linear infinite;
+}
+.players.active .thumbnail.spin:hover {
+ animation-play-state:paused;
+ transition:200ms;
+}
+.players.active .thumbnail.spin.pause{
+ animation-play-state:paused;
+}
+@keyframes spin {
+ to{
+ transform:rotate(360deg); 
+ }
+}
+.thumbnail img {
+ object-fit:cover;
+}
+
+.content {
+ flex:1;
+ padding:0 15px;
+ color:var(--grey);
+}
+.btn-group .material-icons {
+ font-size:40px;
+}
+.btn-group button {
+ color:var(--primary);
+ cursor:pointer;
+ height:60px;
+ width:60px;
+ border-radius:50%;
+ cursor:pointer;
+}
+.playBtn {
+ z-index:6;
+}
+
+.back-btn {
+ position:absolute;
+ top:10px;
+ left:10px;
+ height:40px;
+ width:40px;
+ cursor:pointer;
+ border-radius:20px;
+}
+.dark-mode-btn {
+position:absolute;
+ top:10px;
+ right:10px;
+ height:40px;
+ width:40px;
+ cursor:pointer;
+ border-radius:20px;
+}
+
+.back-btn:hover {
+ background:rgba(255,0,0,0.2);
+}
+.back-btn .material-icons {
+  font-size:40px;
+}
+body.dark .players .material-icons {
+ color:#fff;
+}
+body.dark .players .material-icons.active  {
+ color:var(--primary);
+}
+.prevBtn, .nextBtn, .tools , .progress-box, .back-btn, .dark-mode-btn {
+ display:none;
+}
+.players.active .nextBtn,
+.players.active .prevBtn,
+.players.active .back-btn,
+.players.active .dark-mode-btn {
+ display:inline-block;
+}
+.players.active .progress-box,
+.players.active .tools {
+ display:flex;
+}
+.tools {
+ width:100%;
+ margin:30px 0;
+ justify-content: space-evenly;
+}
+.tools .material-icons {
+ font-size:30px;
+ color:#555;
+ cursor:pointer;
+}
+.tools .material-icons.active {
+ color:var(--primary);
+}
+.players.active .playBtn {
+ margin:0 25px;
+ background:rgba(255,0,0,0.2);
+ transition:0.3s;
+}
+.players.active .playBtn:hover {
+ background:var(--primary);
+ color:#fff;
+}
+.players.active .content h3{
+ font-size:24px;
+ color:var(--primary);
+}
+.progress-box {
+ position:relative;
+ margin-bottom:30px;
+ display:none;
+ width:100%;
+ justify-content:space-between;
+ font-size:14px;
+}
+.players.active .progress-box {
+ display:flex;
+}
+.progress-bar {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    z-index: 4;
+    height: 5px;
+    background: #ccc;
+    width: 100%;
+    border-radius: 30px;
+    top:-10px;
+}
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    border: 0;
+    background: var(--primary);
+    border-radius:50%;
+    cursor: pointer;
+} 
+  
+.volume-box {
+ display:none;
+}
+.players.active .volume-box {
+ transform:translateY(15px);
+ display: none;
+}
+.players.active .volume-box.show {
+ display: block;
+}
+
+.volume-box .progress-bar {
+ position:relative;
+ width:60%;
+}
+.volume-box > span {
+ display:inline-block;
+ height:30px;
+ width:30px;
+ margin:0 5px;
+ cursor:pointer;
+ transition:200ms;
+}
+.volume-box > span:hover {
+ color:var(--primary);
+}
+#audio {
+ display:none;
+}
+</style>
+</head>
+<body>
+<section class="sec sec-1" id="sec-1">
+  <div>
+   <svg id="Capa_1" enable-background="new 0 0 512 512" height="350" viewBox="0 0 512 512" width="300" xmlns=""><g><g></g></svg>
+
+
+<div>
+
+
+
+<style> h2{ color: #000; font-family: Arial, Helvetica, sans-serif; border-radius: 5px; margin:1px; } 
+
+div .jordan{ margin:2px; border-radius: 20px; 
+
+display:adsolute;
+position:responsive; 
+
+
+
+{
+</style>
+
+
+
+ <center>
+ 
+
+<div class="jordan" >   <img class=jordan src="https://imgur.com/LLVKQXC.png" width="70%" height="80%"
+max-width:520px;></a>
+
+</center>
+  
+
+
+<h1>Radios De <span>Moquegua</span></h1>
+<p>Creado por: Sistemas Sureños</p>
+<button onclick="showMusicList()">ESCUCHAR AHORA</button>
+  </div>
+  
+  
+  
+</section>
+<section class="sec sec-2 hide" id="sec-2">
+
+<header class="header">
+
+ <h3>Radios</h3>
+</header>
+
+ <div class="music-list" id="music-list">
+ </div>
+ <audio src="" id="audio" ></audio>
+ <div class="players" id="players">
+   <button class="back-btn" onclick="showplayer()"><i class="material-icons" >expand_more</i></button>
+   <button class="dark-mode-btn" onclick="darkMood()"><i class="material-icons" >invert_colors</i></button>
+   
+   <div class="bottom" >
+     <div class="thumbnail" >
+         <img id="thumbnail" src="https://blogger.googleusercontent.com/img/a/AVvXsEj7IQ0feQLWspf-NmMr0E9qp4nzUqGmknogJa1HAAze4lS5br-zuLlv-_6al_Ql1cPMD3QIRs2N43rnSUrZBy7MzcNF3qZKMkuCVWtIQjQ3UYNQm4GxVGT2Zaw0eJ8n0gIyWZLR45AQ_psXoVgq5EDpO_5OrbgwyV15XpUMoz1qm3PEZ42X3LnuGzbj" alt="" >
+     </div>
+     <div class="content" onclick="showplayer()">
+       <h3 id="name">Name</h3>
+       <small id="category">Category</small>
+     </div>
+     
+     <div class="volume-box">
+     <span onclick="volumeDown()"><i class="material-icons">remove</i></span>
+     
+     <input type="range" class="progress-bar" id="volumeBar" step="1" value="80" min="0" max="100"
+      oninput="audio.volume = this.value/100">
+      
+     <span onclick="volumeUp()"><i class="material-icons">add</i></span>
+     </div>
+     
+     <div class="tools" >
+       <button class="equaliser" onclick="equalizerBtn(event)">
+       <i class="material-icons">equalizer</i>
+       </button>
+       <button class="repeat" onclick="repeat(event)">
+         <i class="material-icons">podcasts</i>
+       </button>
+
+    
+     </div>
+     <div class="progress-box" >
+       <input type="range" class="progress-bar" id="progress" min="0" max="" value="0" onchange="changeProgressBar()"/>
+         <div id="ctview" >00:00</div>
+         <div id="ttview">00:00</div>
+     </div>
+     <div class="btn-group" >
+       <button class="prevBtn" onclick="prevPlay()">
+         <i class="material-icons">skip_previous</i>
+       </button>
+       <button class="playBtn"  onclick="playPause(event)">
+        <i id="playBtn" class="material-icons">play_arrow</i>
+       </button>
+       <button class="nextBtn" onclick="nextPlay()">
+         <i class="material-icons">skip_next</i>
+       </button>
+     </div>
+   </div>
+ </div>
+</section>
+
+<script>
+
+ const playerWindow = document.getElementById("players");
+ const audio = document.getElementById("audio");
+ const name = document.getElementById("name");
+ const category = document.getElementById("category");
+ const thumbnail = document.getElementById("thumbnail");
+ const playBtn = document.getElementById("playBtn");
+ const progress = document.getElementById("progress");
+ const ttview = document.getElementById("ttview");
+ const tcview = document.getElementById("tcview");
+ const volumeBar = document.getElementById("volumeBar");
+ 
+ const musicList = document.getElementById("music-list");
+ const body = document.querySelector("body");
+ 
+ let musicData = [
+ {
+ id:1,
+ Autor:"Radio Studio 97",
+ name:"Radio Studio 97",
+ src:"https://sechin.grupocentroserver.com/radio/8140/radio.mp3",
+ image:"https://imgur.com/fnSNckR.png",
+ },
+ {
+ id:2,
+ Autor:"Radio Galaxia",
+ name:"Radio Galaxia",
+ src:"https://st3.inkaniserver.net:8096/stream",
+ image:"https://imgur.com/XUQV5jS.png",
+ },
+ {
+ id:3,
+ Autor:"Radio Studio Líder",
+ name:"Radio Studio Líder",
+ src:"https://cloudstream2030.conectarhosting.com/9372/stream",
+ image:"https://imgur.com/tzXGtON.jpg",
+ },
+ { 
+ id:4,
+ Autor:"Radio Altamar",
+ name:"Radio Altamar",
+ src:"https://cloudstream2030.conectarhosting.com/9380/stream",
+ image:"https://i.imgur.com/IN6nDOI.png",
+ },
+{ 
+ id:5,
+ Autor:"Radio Americana",
+ name:"Radio Americana",
+ src:"https://st3.inkaniserver.net:8010/stream",
+ image:"https://i.imgur.com/il6WXH1.png",
+ },
+ {
+ id:6,
+ Autor:"Radio Expresión",
+ name:"Radio Expresión",
+ src:"https://stream-036.zeno.fm/x8fvph67guhvv?zs=8eheeDneQw65U2qBOBOrxA",
+ image:"https://i.imgur.com/nNDoaNd.png",
+ },
+{ 
+ id:7,
+ Autor:"Radio La Voz Del Sur",
+ name:"Radio La Voz Del Sur",
+ src:"https://ssl.streamserverlive.com:7106",
+ image:"https://imgur.com/j2qY1TZ.png",
+ },
+ {
+ id:8,
+ Autor:"ribereña moquegua",
+ name:"Radio Ribereña Moquegua",
+ src:"https://stream-155.zeno.fm/sed22b6595quv?zs=24taf4y6T7-2pq_RoIjU1g",
+ image:"https://imgur.com/piTMg67.png",
+ },
+{ 
+ id:9,
+ Autor:"Radio Santa Cruz",
+ name:"Radio Santa Cruz",
+ src:"https://ssl.streamserverlive.com:7054/;",
+ image:"https://imgur.com/CQz2j2t.png",
+ },
+ {
+ id:10,
+ Autor:"Radio Latina",
+ name:"Radio Latina",
+ src:"https://stream-155.zeno.fm/sed22b6595quv?zs=24taf4y6T7-2pq_RoIjU1g",
+ image:"https://imgur.com/uc255hu.png",
+ },
+ {
+ id:11,
+ Autor:"Exitos De Primera",
+ name:"Radio Sol",
+ src:"https://st3.inkaniserver.net:8060/stream",
+ image:"https://i.imgur.com/2wcbXZ6.png",
+ },
+{ 
+ id:12,
+ Autor:"Radiomar",
+ name:"Ciudad Radio",
+ src:"https://stream-037.zeno.fm/9fphfg6dnlctv?zs=xSR3ZU1KQPmjqsRy3WAimw",
+ image:"https://i.imgur.com/VyepjL1.png",
+ },
+{ 
+ id:13,
+ Autor:"Radio Primavera",
+ name:"Radio Primavera",
+ src:"https://turadio.accesopanel.com/8562/stream",
+ image:"https://i.imgur.com/E4IJLYd.png",
+ },
+{ 
+ id:14,
+ Autor:"Radio Rumba",
+ name:"Radio Rumba",
+ src:"https://stream.zeno.fm/epbf9wvmshruv",
+ image:"https://i.imgur.com/sQ7JFPG.png",
+ },
+ {
+ id:15,
+ Autor:"Exitos De Primera",
+ name:"Radio Activa",
+ src:"https://ssl.streamserverlive.com:7126/stream",
+ image:"https://imgur.com/7DZEGhg.png",
+ },
+ {
+ id:16,
+ Autor:"Exitos De Primera",
+ name:"Radio Santa Catalina",
+ src:"https://stream.zeno.fm/5zkxx7zp5gruv",
+ image:"https://imgur.com/d42ZXg4.png",
+ },
+ {
+ id:17,
+ Autor:"Exitos De Primera",
+ name:"Radio Santa Clara",
+ src:"https://stream.zeno.fm/r2tbe7gars8uv",
+ image:"https://imgur.com/d42ZXg4.png",
+ },
+{ 
+ id:18,
+ Autor:"Radiomar",
+ name:"Radio El Puerto",
+ src:"https://sp.onliveperu.com/8024/stream",
+ image:"https://i.imgur.com/HK4opJB.png",
+ },
+ {
+ id:19,
+ Autor:"Radio Generación X",
+ name:"Radio Generación X",
+ src:"https://turadio.accesopanel.com:7232/stream",
+ image:"https://imgur.com/rCaDQgT.png",
+ },
+{ 
+ id:20,
+ Autor:"Radio Felicidad",
+ name:"Radio Positiva",
+ src:"https://sonic.dattassd.com:10968/;",
+ image:"https://i.imgur.com/EohKDrT.png",
+ },
+ {
+ id:21,
+Autor:"TE ACTIVA",
+ name:"Radio Sabor Mix",
+ src:"https://stream.zeno.fm/dy22ya8mgg0uv", 
+ image:"https://imgur.com/wD3WXV5.png",
+ },
+ {
+ id:22,
+ Autor:"Radio Incamach",
+ name:"Radio Incamach",
+ src:"https://imgur.com/5kvWj3u",
+ image:"https://imgur.com/5kvWj3u.png",
+ },
+ {
+ id:23,
+Autor:"Radio Moda",
+ name:"Onda Popular Mix",
+ src:"https://stream-035.zeno.fm/zn6p99uxszzuv?zs=jD-TPVQgQ4uxVLHSN6jVag",
+ image:"https://static.mytuner.mobi/media/tvos_radios/dpuggxhnekmp.png",
+ },
+{ 
+ id:24,
+ Autor:"Exitos De Primera",
+ name:"Radio Urban Fiesta",
+ src:"https://radios.sonidoshd.com:7077/;",
+ image:"https://play-lh.googleusercontent.com/AaMOBVPYVORLuh1R8YIjU75QCKcCcyVpjwULaFQfvZYd2VipQtqRdACXEQJ9ARQ3hOT_=w240-h480-rw",
+ },
+{ 
+ id:25,
+ Autor:"Radio Felicidad",
+ name:"ILO FM",
+ src:"https://stream-018.zeno.fm/vu09pk5v2a0uv?zs=XfTfTSOtRNqr7eWwdsXr7w",
+ image:"https://play-lh.googleusercontent.com/FFNV0zqEhUY1_P-jWdjmbDcXagzN1HyY1aiSb-aSffM_X2SkXhaKpdfKadN5IJG5NQ=w240-h480-rw",
+ },
+{ 
+ id:26,
+ Autor:"Radio Felicidad",
+ name:"Radio Retro",
+ src:"https://sp.dattavolt.com/8094/stream",
+ image:"https://i.imgur.com/cpBKFn5.png",
+ },
+{ 
+ id:27,
+ Autor:"Radio Felicidad",
+ name:"Planeta 80 Radio",
+ src:"https://tupanel.info:9800",
+ image:"https://planeta80.com/imgs/planeta80_logo.png",
+ },
+{ 
+ id:28,
+Autor:"Exitos De Primera",
+ name:"Radio Nueva Mix",
+ src:"https://sechin.grupocentroserver.com/radio/8100/radio.mp3",
+ image:"https://i.imgur.com/j5Nrw8Q.png",
+ },
+{ 
+ id:29,
+Autor:"Exitos De Primera",
+ name:"Victor Music Moquegua",
+ src:"https://stream-021.zeno.fm/wymz9unt88quv?zs=kNJAV-cSS_ynA2nrP9TP7w",
+ image:"https://imgur.com/TlXB9yG.png",
+ },
+{ 
+ id:30,
+Autor:"Exitos De Primera",
+ name:"Radio Uno Ilo",
+ src:"https://stream2.eistreaming.com:10985/;",
+ image:"https://play-lh.googleusercontent.com/m0EvBRBmIeLA8nUQruLPyeF0xQbbDh3FjCHPifiRaDo5QBOpSXA7MaK78A7Q8K7c5g=w240-h480-rw",
+ },
+{ 
+ id:31,
+ Autor:"Radio Felicidad",
+ name:"Radio Karibeña",
+ src:"https://serverssl.innovatestream.pe:8080/http://167.114.118.120:7442/;",
+ image:"https://imgur.com/YEs2JXZ.png",
+ },
+{ 
+ id:32,
+ Autor:"Radio Studio 92",
+ name:"Radio Exitosa",
+ src:"https://7.innovatestream.pe:2020/stream/exitosaoficial/stream",
+ image:"https://i.imgur.com/olFdutx.jpg",
+ },
+ ]
+let repeatMusic = false;
+let index = 1;
+let songs = musicData;
+
+const elc = musicList.getElementsByClassName("equalize")[index-1];
+
+const showMusicList = () => {
+ document.querySelector(".sec-1").classList.add("hide");
+ document.querySelector(".sec-2").classList.remove("hide");
+}
+const darkMood = () => {
+ body.classList.toggle("dark");
+}
+
+const setActive = (i) => {
+  setEqualizer()
+  let a =  musicList.querySelector(".active");
+  if(a !== null) {
+   a.classList.remove("active");
+  }
+  const ele = document.getElementsByClassName("music")[i-1];
+  ele.classList.add("active");
+}
+
+const setData = data => {
+ name.textContent = data.name;
+ category.textContent = data.category;
+ thumbnail.src = data.image;
+} 
+
+const playMusic = async (i) => {
+  if(i == 18 || i == 10 ) {
+   body.classList.toggle("dark");
+   setTimeout(() => body.classList.toggle("dark"),7000);
+  }
+  let data = musicData.find(m => m.id === i) || musicData[1];
+  setActive(i)
+  setData(data);
+  playBtn.textContent = "pause";
+  audio.src = data.src;
+  await audio.load();
+  audio.play();
+}
+ 
+ const playPause = e => {
+    if(audio.paused) {
+    playBtn.textContent = "pause";
+    audio.play();
+    setEqualizer()
+   } else{
+   playBtn.textContent = "play_arrow";
+    audio.pause();
+    setEqualizer(true)
+   }
+ }
+ 
+ const showplayer = () => {
+   playerWindow.classList.toggle("active");
+ }
+ const equalizerBtn = e => {
+  e.target.classList.toggle("active");
+  document.querySelector(".thumbnail").classList.toggle("spin");
+ }
+ const addFvt = e => {
+  e.target.classList.toggle("active")
+ }
+ const repeat = e => {
+  e.target.classList.toggle("active")
+  repeatMusic = !repeatMusic;
+  audio.loop = repeatMusic;
+ }
+ const volumeBox = e => {
+  e.target.classList.toggle("active");
+  document.querySelector(".volume-box").classList.toggle("show");
+ }
+ const nextPlay = () => {
+  index++;
+  if (index > musicData.length) {
+   index = 1;
+  }
+  playMusic(index);
+ }
+ const prevPlay = () => {
+  index--;
+  if (index <= 0) {
+  index = musicData.length;
+  }
+  playMusic(index);
+ }
+ 
+ audio.addEventListener("ended", () => {
+  nextPlay();
+ })
+ audio.onloadeddata = () =>  {
+ progress.max = audio.duration
+ const ds = parseInt(audio.duration % 60)
+ const dm = parseInt((audio.duration / 60) % 60)
+ ttview.textContent = dm + ':' + ds;
+ }
+ audio.ontimeupdate =  () =>  { 
+   progress.value = audio.currentTime 
+ }
+ audio.addEventListener('timeupdate', () => {
+
+ var cs = parseInt(audio.currentTime % 60)
+ var cm = parseInt((audio.currentTime / 60) % 60)
+  ctview.textContent = cm + ':' + cs;
+ }, false);
+ 
+ const changeProgressBar = () => { 
+   audio.currentTime = progress.value;
+ }
+ 
+
+ const addList = (data) => {
+  let div = document.createElement("div");
+  div.classList.add('music');
+  div.setAttribute("data-id", data.id);
+  let html = `
+   <div class="list-thumbnail" >
+    <img src="${data.image}" alt="" >
+   </div>
+   <div class="list-content" >
+   <h3>${data.name}</h3>
+   <small>${data.category}</small>
+   </div>
+   <button class="list-btn" >
+   <i class="material-icons">play_arrow</i>
+    <div class="equalize">
+    <span></span>
+    <span></span>
+    <span></span>
+   </div>
+   </button>`;
+   div.innerHTML = html;
+   musicList.append(div);
+   div.addEventListener('click', () => {
+    playMusic(data.id);
+    playerWindow.classList.add("active");
+    index = data.id;
+   });
+ }
+ 
+ const setMusicList =  () => {
+  songs.forEach(song => addList(song));
+ }
+ 
+ const FirstSetUp = () => {
+  audio.src = musicData[index -1].src;
+  setData(musicData[index -1]);
+  setMusicList();
+ }
+ FirstSetUp()
+ 
+ const filterCat = (cat) => {
+  songs = musicData.filter(song => song.category == cat);
+  while(musicList.hasChildNodes()){
+    musicList.removeChild(musicList.firstChild);
+  }
+  setMusicList()
+ }
+ const filterAll = () => {
+  songs = musicData;
+  while(musicList.hasChildNodes()){
+    musicList.removeChild(musicList.firstChild);
+  }
+  setMusicList()
+ }
+function setEqualizer(action = false){
+ const elc = musicList.getElementsByClassName("equalize")[index-1];
+ const thumb =  document.querySelector(".thumbnail");
+ if(elc.classList.contains("pause")) {
+   elc.classList.remove("pause")
+ } else {
+  if(action) {
+   elc.classList.add("pause")
+  }
+ }
+ if(thumb.classList.contains("spin") && audio.paused && action){
+  thumb.classList.add("pause");
+ } else if(thumb.classList.contains("spin") &&!audio.paused){
+  thumb.classList.remove("pause");
+ }
+}
+</script>
+</body>
