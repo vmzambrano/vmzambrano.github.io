@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Boton Flotante</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<style>
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;}
+#btn-mas{
+display: none;}
+.container{
+position: fixed;
+bottom: 20px;
+right: 20px;}
+.redes a, .icon-mas2{
+display: block;
+text-decoration: none;
+background: red;
+color: #fff;
+width: 55px;
+height: 55px;
+line-height: 55px;
+text-align: center;
+border-radius: 50%;
+box-shadow: 0px 1px 10px rgba(0,0,0,0.4);
+transition: all 500ms ease;}
+.redes a:hover{
+background: #fff;
+color: #cc2b2b;}
+.redes a{
+margin-bottom: -15px;
+opacity: 0;
+visibility: hidden;}
+#btn-mas:checked~ .redes a{
+margin-bottom: 10px;
+opacity: 1;
+visibility: visible;}
+.icon-mas2{
+cursor: pointer;
+background: red;
+font-size: 23px;}
+#btn-mas:checked ~ .btn-mas .icon-mas2{
+transform: rotate(137deg);
+font-size: 25px;}
+</style>
+</head>
+<body>
+<div class="container">
+<input type="checkbox" id="btn-mas">
+<div class="redes">
+<a href="aqui tu referencia o link ejemplo abajo" class="fab fa-facebook-f"></a>
+
+<a href="https://www.facebook.com/RadioBahiaChala" class="fab fa-instagram"></a>
+<a href="https://www.highcpmrevenuenetwork.com/a178wijpm?key=658923d6a155215419f3fd62bd1e3325" class="fab fa-twitter"></a>
+<a href="https://www.highcpmrevenuenetwork.com/a178wijpm?key=658923d6a155215419f3fd62bd1e3325" class="fab fa-pinterest"></a>
+</div>
+<div class="btn-mas">
+<label for="btn-mas" class="icon-mas2"><b>+</b></label>
+
+
+
+</cambia el color donde dice red a cualquier color pero en ingles si quieres negro pon black verde green,etc! ELIMINA ESTO LUEGO busca iconos aqui https://fontawesome.com/>
+
+
+
+</div>
+</div>
+</body>
+</html>
