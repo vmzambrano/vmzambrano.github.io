@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="theme-color" content="#f4000b">
+<title>RADIO RIBEREÑA MOQUEGUA</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://api.radioslive.stream/reproluna/luna-animado.js"></script>
+<style>
+html,body{font-family:"Open Sans",sans-serif;height:100%;margin:0;display:flex;flex-direction:column;color:#272829}a{text-decoration:none;color:rgba(255,255,255,1)}a:hover{color:rgba(255,255,255,1);text-decoration:none}#header{position:fixed;top:0;left:0;z-index:100;transition:all .5s;overflow-y:auto;background:rgba(255,255,255,0);padding:20px 20px 0}.nav-menu *{margin:0;padding:0;list-style:none}.nav-menu > ul > li{position:relative;white-space:nowrap}.nav-menu a{display:flex;align-items:center;color:red;padding-left:18px;margin-bottom:8px;transition:.3s;font-size:15px;border-radius:50px;background:#f2f3f5;height:46px;width:100%;overflow:hidden;transition:.3s}.nav-menu a i{font-size:16px}.nav-menu a span{padding:0 5px 0 7px;color:#000}.nav-menu li:hover > a{color:blue;background:#00cc45}.nav-menu li:hover > a span{color:#fff}.mobile-nav-toggle{position:fixed;right:15px;top:15px;z-index:99;border:0;background:none;font-size:24px;transition:all .4s;outline:none!important;line-height:1;cursor:pointer;text-align:right}.mobile-nav-toggle i{color:#fff}.mobile-nav-active{overflow:hidden}.mobile-nav-active #header{left:0}.mobile-nav-active .mobile-nav-toggle i{color:#fff}#player{margin:0 auto;width:100%;height:100%}.background_hora{width:196px;height:46px;background-color:#fff;position:absolute;right:20px;bottom:100px;border-radius:50px}#relogio{margin:0;position:absolute;top:50%;left:50%;margin-right:-50%;transform:translate(-50%,-50%);font-size:30px;font-family:"Poppins",sans-serif;color:red}.back-to-top{position:fixed;display:none;width:40px;height:40px;border-radius:50px;right:15px;bottom:15px;background:#3a0d5c;color:#fff;transition:display .5s ease-in-out;z-index:99999}.back-to-top i{font-size:24px;position:absolute;top:7px;left:8px}.back-to-top:hover{color:#fff;background:#0678e3;transition:background .2s ease-in-out}@media (min-width: 992px){.mobile-nav-toggle{display:none}}@media (max-width: 991px){#header{width:auto;background:#fff;border-right:1px solid #e6e9ec;left:-300px;padding:20px 30px 100vh 10px}}@media only screen and (max-width: 768px){#player{width:100%;height:100%}.background_hora{display:none}#relogio{display:none}}
+</style>
+</head>
+
+<body>
+<div style="height:100%">
+
+<div id="player"></div>
+<script>
+$("#player").lunaradio({
+radioname: "RIBEREÑA MOQUEGUA", 
+streamurl: "https://stream-160.zeno.fm/sed22b6595quv?zs=u0vqdsGWQruphMDz7OQmIg", 
+coverimage: "https://i.imgur.com/dwyZkWI.jpg",
+volume:"100", autoplay:"true", 
+onlycoverimage:"false", coverstyle:"animated", usevisualizer:"real", visualizertype:"2",
+userinterface:"big", backgroundcolor:"#000000", fontcolor:"#ffffff", hightlightcolor:"#000000", fontname:"Roboto", googlefont:"", fontratio:"0.7", scroll:"true", displayliveicon:"true", visualizeropacity:"1.0", multicolorvisualizer:"true", color1:"#00FF00", color2:"#ffff00", color3:"#FF1F6F", color4:"#FF1F6F", metadatainterval:"20000", 
+});
+</script>
+
+<button type="button" class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
+<header id="header">
+<nav class="nav-menu">
+<ul>
+<li><a target="_blank" href="https://play.google.com/store/apps/details?id=turadio"><i class="fab fa-google-play"></i> <span>Descarga nuestra APP</span></a></li>
+<li><a target="_blank" href="https://api.whatsapp.com/send?phone=51912985640&text=Hola, quiciera saber precios sobre la publicidad "><i class="fas fa-bullhorn"></i><span>Publicidad</span></a></li>
+<li><a target="_blank" href="https://www.facebook.com/riberemixmoquegua"><i class="fab fa-facebook-square" alt="Facebook"></i>
+<span>Facebook</span></a></li>
+<li><a target="_blank" href="https://www.instagram.com/vm_zambrano"><i class="fab fa-instagram-square" alt="Instagram"></i>
+<span>Instagram</span></a></li>
+<li><a href="https://api.whatsapp.com/send?phone=51912985640&text=Hola escucho la radio" target="_blank"><i class="fab fa-whatsapp-square" alt="Whatsapp"></i>
+<span>Whatsapp</span></a></li>
+<li><a target="_blank" href="https://www.tiktok.com/vm_zambrano/"><i class="fab fa-tiktok"></i><span>tiktok</span></a></li>
+</ul>
+</nav>
+</header>
+
+
+
+
+
+<div class="background_hora"><div id="relogio">15:00:05</div></div>
+<script>
+function reloj() {
+let elementoID = document.getElementById('relogio');
+let horalocal = new Date().toLocaleTimeString('es');
+elementoID.innerHTML = horalocal;
+}
+setInterval(reloj, 1000);
+</script>
+</div>
+
+
+<footer style="display:grid;align-content:end">
+<div style="background-color:#222;color:#fff;text-align:center;padding:10px"> 
+&copy;Ribereña Moquegua Copyright - <a href="http://www.google.com">Sistemas Sureños</a> 
+</div>
+</footer>
+
+<script>
+$(".mobile-nav-toggle").click(function(){
+$("body").toggleClass("mobile-nav-active");
+$(".mobile-nav-toggle i").toggleClass("fa-bars fa-times");
+});
+</script>
+</body>
+</html>
