@@ -1,206 +1,58 @@
+<!doctype html>
 <html lang="es">
-   
-<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1" />
 <head>
-      <meta charset="utf-8">
-      <title>RADIO ONLINE</title> 
-      <meta http-equiv="cache-control" content="max-age=0" />
-      <meta http-equiv="cache-control" content="no-cache" />
-      <meta http-equiv="expires" content="0" />
-      <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-      <meta http-equiv="pragma" content="no-cache" />
-      <meta name="Description" content="Radio App">
-      <meta name="apple-touch-fullscreen" content="yes">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="mobile-web-app-capable" content="yes">
-      <meta name="apple-mobile-web-app-title" content="EmpresarialHost.com"> 
-      <meta name="theme-color" content="#03AC1A">
-      <link rel="icon" type="image/png" href="https://imgur.com/Cz4GlA6.png" sizes="512x512"/>
-      <link rel="apple-touch-icon" sizes="512x512" href="https://imgur.com/Cz4GlA6.png"> 
-      <link rel="manifest" href="./manifest.json"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&amp;display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.6.1/sweetalert2.css">
-      <link href="../inc-player-home-page/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      <link rel="stylesheet" media="screen" href="../inc-player-home-page/assets/css/styles.css">
-      <link href="../inc-player-home-page/modern-ticker/css/modern-ticker.css" type="text/css" rel="stylesheet">
-      <link href="../inc-player-home-page/modern-ticker/themes/theme1.css" type="text/css" rel="stylesheet">
-      <script src="../inc-player-home-page/modern-ticker/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-      <script src="../inc-player-home-page/modern-ticker/js/jquery.modern-ticker.min.js" type="text/javascript"></script>
-      <script src="https://kit.fontawesome.com/31185ad43a.js" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.6.1/sweetalert2.min.js"></script>
-      <style type="text/css">html,body{width:100%;height:100%;background:radial-gradient(circle,rgba(255,225,0,1) 0%,rgba(249,107,6,1) 50%,rgba(244,0,11,1) 80%)}#tabela_historico tr > *:nth-child(1) {display: none;}#tabela_historico tr:first-child {display: none;}#playerbackgroundimage2{display: none!important;}</style>
-      <div class="modern-ticker mt-round mt-font">
-         <div class="mt-body">
-            <div class="mt-news">
-               <ul></ul>
-            </div>
-         </div>
-      </div>
-      <script type="text/javascript">
-         jQuery(document).ready(function () {
-         
-           jQuery(".modern-ticker").modernTicker({
-             effect: "scroll",
-             scrollType: "continuous",
-             scrollStart: "inside",
-             scrollInterval: 20,
-             transitionTime: 500,
-             randomOrder: true,
-             linksEnabled: true,
-             pauseOnHover: true,
-             autoplay: true,
-             feedType: "rss",
-             loadType: "direct",
-             feedUrl: "https://expansion.mx/rss/tecnologia",
-             loadType: "process",
-             loadProcess: "rss2json",
-             forceNoCache: false,
-             feedCount: 15,
-             linkTarget: "_blank",
-             refresh: "5:00"
-           });
-         });
-      </script>
-   </head>
-   <body oncontextmenu='return false'>
-      <button type="button" class="mobile-nav-toggle d-xl-none"><i class="fa fa-bars"></i></button>
-      <header id="header" class="d-flex flex-column justify-content-center">
-         <nav class="nav-menu">
-            <ul>
-                              <li><a target="_blank"href="https://www.facebook.com/EmpresarialHost/"><i class="fa fa-facebook-official"></i>
-                  <span>Facebook</span></a>
-               </li>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="theme-color" content="#f4000b">
+<title>Escuchalo Fm</title>
 
-               <li><a target="_blank" href="https://www.instagram.com/EmpresarialHost/"><i class="fa fa-instagram" aria-hidden="true"></i> <alt="Instagram"></i>
-<span>Instagram</span></a></li>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://api.radioslive.stream/reproluna/luna-animado.js"></script>
+<style>
+html,body{font-family:"Open Sans",sans-serif;height:100%;margin:0;display:flex;flex-direction:column;color:#272829}a{text-decoration:none;color:rgba(255,255,255,1)}a:hover{color:rgba(255,255,255,1);text-decoration:none}#header{position:fixed;top:0;left:0;z-index:100;transition:all .5s;overflow-y:auto;background:rgba(255,255,255,0);padding:20px 20px 0}.nav-menu *{margin:0;padding:0;list-style:none}.nav-menu > ul > li{position:relative;white-space:nowrap}.nav-menu a{display:flex;align-items:center;color:red;padding-left:18px;margin-bottom:8px;transition:.3s;font-size:15px;border-radius:50px;background:#f2f3f5;height:46px;width:100%;overflow:hidden;transition:.3s}.nav-menu a i{font-size:16px}.nav-menu a span{padding:0 5px 0 7px;color:#000}.nav-menu li:hover > a{color:blue;background:#00cc45}.nav-menu li:hover > a span{color:#fff}.mobile-nav-toggle{position:fixed;right:15px;top:15px;z-index:99;border:0;background:none;font-size:24px;transition:all .4s;outline:none!important;line-height:1;cursor:pointer;text-align:right}.mobile-nav-toggle i{color:#fff}.mobile-nav-active{overflow:hidden}.mobile-nav-active #header{left:0}.mobile-nav-active .mobile-nav-toggle i{color:#fff}#player{margin:0 auto;width:100%;height:100%}.background_hora{width:196px;height:46px;background-color:#fff;position:absolute;right:20px;bottom:100px;border-radius:50px}#relogio{margin:0;position:absolute;top:50%;left:50%;margin-right:-50%;transform:translate(-50%,-50%);font-size:30px;font-family:"Poppins",sans-serif;color:red}.back-to-top{position:fixed;display:none;width:40px;height:40px;border-radius:50px;right:15px;bottom:15px;background:#3a0d5c;color:#fff;transition:display .5s ease-in-out;z-index:99999}.back-to-top i{font-size:24px;position:absolute;top:7px;left:8px}.back-to-top:hover{color:#fff;background:#0678e3;transition:background .2s ease-in-out}@media (min-width: 992px){.mobile-nav-toggle{display:none}}@media (max-width: 991px){#header{width:auto;background:#fff;border-right:1px solid #e6e9ec;left:-300px;padding:20px 30px 100vh 10px}}@media only screen and (max-width: 768px){#player{width:100%;height:100%}.background_hora{display:none}#relogio{display:none}}
+</style>
+</head>
 
-<li><a target="_blank" href="https://www.youtube.com/empresarialhost"><i class="fa fa-youtube-play" aria-hidden="true"></i> <alt="YouTube"></i>
-<span>YouTube</span></a></li>
+<body>
+<div style="height:100%">
 
-                <li><a target="_blank" href="https://www.tiktok.com/@vm_zambrano/"><i class="fab fa-tiktok" aria-hidden="true"></i> <alt="Tiktok"></i>
-                    <span>Tiktok</span></a></li>
-
-
-<li><a href="https://api.whatsapp.com/send?phone=5210000000000&text=Hola%20escucho%20la%20radio,%20saludos%20Empresarialhost.com" target="_blank" href="https://hola.eskuchame.com/favicon.png"><i class="fa fa-whatsapp"></i>
-                  <span>Whatsapp</span></a>
-
-               </li>
-                <li><a href="https://api.whatsapp.com/send?phone=5210000000000&text=Hola%20quisiera%20saber%20precios%20sobre%20la%20publicidad" target="_blank"><i class="fa fa-bullhorn"></i>
-                  <span>Pedir cancion</span></a>
-               </li>
-                                            
-                                                            
-                <li><a href="" class="card-link" id="instalar"><i class="fa fa-windows"></i> <span>Instalar App</span></a></li>
-               
-                           </ul>
-         </nav>
-      </header>
-      </header>
-      <section id="particles-js" class="about">
-         
-    
-         <div id="player"></div>
-         <div class="background_hora">
-            <div id="relogio"><i class="fa fa-clock-o"></i></div>
-         </div>
-      </section>
-      <div id="preloader"></div>
-      <script src="../inc-player-home-page/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="../inc-player-home-page/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-      <script src="../inc-player-home-page/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-      <script src="../inc-player-home-page/assets/vendor/counterup/counterup.min.js"></script>
-      <script src="../inc-player-home-page/assets/js/particles.js"></script>
-      <script src="../inc-player-home-page/assets/js/main.js"></script>
-      <script src="../inc-player-home-page/assets/js/lunaradio-sincors.js"></script>
-      <script>
-         $("#player").lunaradio({
-userinterface: "big", 
-backgroundcolor: "4c0066",
-fontcolor: "#161f3c",
-hightlightcolor: "#161f3c", 
-fontname: "Be Vietnam", 
-googlefont: "Be Vietnam", 
-fontratio: "0.3", 
-radioname: "RIBERENA MIX",
-scroll: "true", 
-coverimage: "https://imgur.com/Cz4GlA6.png",
-onlycoverimage: "false",
-coverstyle: "animated",
-usevisualizer: "real", 
-visualizertype: "6", 
-metadatatechnic: "",
-ownmetadataurl: "", 
-streamurl: "https://stream-150.zeno.fm/q7s5xtsusbruv?zs=XLjT6QQuTU6p6L9H1TkLow", 
-streamtype: "shoutcast2", 
-icecastmountpoint: "",
-shoutcastpath: "/stream",
-shoutcastid: "1", 
-streamsuffix: "", 
-radionomyid: "", 
-radionomyapikey: "",
-radiojarid: "",  
-radiocoid: "",
-itunestoken: "1000lIPN", 
-metadatainterval: "6000", 
-volume: "100",
-debug: "false",
-autoplay: "true"
-});
-
-         function historico(server) {
-
-          $.get( "https://player.onecast.com.br/inc-player-home-page/historico.php?porta=6688&amp;servidor=").done(function( resultado ) {
-            $('#historico').hide().html(resultado).fadeIn(1500);
-          });
-
-         }
-         
-          function relogio() {let elementoID = document.getElementById('relogio');let horalocal = new Date().toLocaleTimeString('pt-BR');elementoID.innerHTML = horalocal;}
-          setInterval(relogio, 1000);
-          historico("");
-          setInterval(function(){ historico(""); }, 60000);
-      </script>
+<div id="player"></div>
 <script>
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('../service-worker.js', {useCache: false, scope: '/player-home-page/6688'})
-      .then(function(registration) {
-
-    registration.addEventListener('updatefound', () => {
-      newWorker = registration.installing;
-          });
-  });
-}
-if (('standalone' in navigator) && (!navigator.standalone)) {
-    import('https://unpkg.com/pwacompat');
-}
-$(window).on("keydown",function(e){return 123==e.keyCode?!1:e.ctrlKey&&e.shiftKey&&73==e.keyCode?!1:e.ctrlKey&&73==e.keyCode?!1:void 0}),$(document).on("contextmenu",function(e){e.preventDefault()});
-$(document).keydown(function(e){var o=String.fromCharCode(e.keyCode).toLowerCase();return!e.ctrlKey||"c"!=o&&"u"!=o?void 0:!1});</script>
-<script>
-window.onload=function(){
-
-let installPromptEvent;
-window.addEventListener('beforeinstallprompt', (event) => {
-  event.preventDefault();
-  installPromptEvent = event;
+$("#player").lunaradio({
+radioname: "VICTOR MUSIC PERÚ", 
+streamurl: "https://stream-068.zeno.fm/wymz9unt88quv?zs=CRob-bBaTAaAQKZPmFkYmw", 
+coverimage: "https://imgur.com/Cz4GlA6.jpg",
+volume:"100", autoplay:"true", 
+onlycoverimage:"false", coverstyle:"animated", usevisualizer:"real", visualizertype:"4",
+userinterface:"big", backgroundcolor:"#000000", fontcolor:"#ffffff", hightlightcolor:"#000000", fontname:"Roboto", googlefont:"", fontratio:"0.7", scroll:"true", displayliveicon:"true", visualizeropacity:"1.0", multicolorvisualizer:"true", color1:"#04FF00", color2:"#83FF00", color3:"#04FF00", color4:"#04FF00", metadatainterval:"20000", 
 });
-window.addEventListener('appinstalled', () => {
-  installPromptEvent = null;
-  window.location = 'https://hola.eskuchame.com/'; 
-});
-var buttonInstall = document.getElementById("instalar");
-buttonInstall.addEventListener('click', (e) => {
-  installPromptEvent.prompt();    
-  installPromptEvent.userChoice.then((choice) => {}); 
-});
-}
-function instalar_app_iphone() {
-  Swal.fire({title: '',icon: 'info',html: "To install the App, press the share button <img width='23' height='32' src='/inc-player-home-page/img-icone-share-ios.png'> on your iPhone and choose the option &quot;Add to Home Screen&quot;"})
-}
 </script>
-   </body>
 
+
+
+
+
+
+
+<div class="background_hora"><div id="relogio">15:00:05</div></div>
+<script>
+function reloj() {
+let elementoID = document.getElementById('relogio');
+let horalocal = new Date().toLocaleTimeString('es');
+elementoID.innerHTML = horalocal;
+}
+setInterval(reloj, 1000);
+</script>
+</div>
+
+
+
+<script>
+$(".mobile-nav-toggle").click(function(){
+$("body").toggleClass("mobile-nav-active");
+$(".mobile-nav-toggle i").toggleClass("fa-bars fa-times");
+});
+</script>
+</body>
 </html>
