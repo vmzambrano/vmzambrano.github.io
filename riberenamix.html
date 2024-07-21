@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>SISTEMAS SUREÑOS - VICTOR MANUEL ZAMBRANO</title>
+<link rel="shortcut icon" href="" type="image/x-icon">
+ <link rel="icon" href="" type="image/x-icon">
+<style>
+		html, body {
+			margin:0;
+			padding:0;
+			/*overflow: hidden;*/
+			width:100%;
+			height:100%;
+		}
+		.fs-vid-background {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			z-index: 2;
+		}
+		.fs-vid-background video {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+		}
+		video {
+			max-width: 100%;
+		}
+</style>
+</head>
+<body>
+<div class="fs-vid-background">
+<video autoplay="true" muted="true" loop="true">
+<source src="https://i.imgur.com/iQzWC6G.mp4" type="video/mp4">
+</video>
+</div>
+<script src="https://radiopedregal.github.io/js/jquery-3.2.1.min.js"></script> 
+<script src="https://radiopedregal.github.io/js/lunaradio.js"></script>
+<div id="k-popradio" style="width:100%; height: 100%; position: absolute; left:0; top:0; z-index: 300;">
+</div>
+
+<script>
+jQuery(document).ready(function($) {
+	$("#k-popradio").lunaradio({
+userinterface: "big",
+backgroundcolor: "rgba(9,15,25,0.8)",
+fontcolor: "#FFFFFF",
+hightlightcolor: "#06B703",
+fontname: "Anton",
+	googlefont: "Anton&display=swap",
+fontratio: "0.4",
+radioname: "Radio Ribereña Mix",
+scroll: "true",
+coverimage: "https://imgur.com/HxVVA1W.jpg",
+onlycoverimage: "true",
+coverstyle: "animated",
+usevisualizer: "real",
+visualizertype: "6",
+	multicolorvisualizer: "true",
+	color1: "#04FF00",
+		color2: "#04FF00",
+		color3: "#04FF00",
+		color4: "#04FF00",
+metadatatechnic: "",
+ownmetadataurl: "",
+streamurl: "https://stream-162.zeno.fm/q7s5xtsusbruv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJxN3M1eHRzdXNicnV2IiwiaG9zdCI6InN0cmVhbS0xNjIuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IndMSng2RkE4U01TYUFkNzQxMjVqbGciLCJpYXQiOjE3MjE1NzkyNjQsImV4cCI6MTcyMTU3OTMyNH0.JQKLqBTieHfhGrmFHUa0Vkp44ggWHCAU42KZndt4nwk",
+streamtype: "shoutcast2",
+icecastmountpoint: "",
+shoutcastpath: "/stream",
+shoutcastid: "1",
+streamsuffix: "",
+radionomyid: "",
+radionomyapikey: "",
+radiojarid: "",
+radiocoid: "",
+itunestoken: "1000lIPN",
+metadatainterval: "5000",
+volume: "100",
+debug: "false",
+autoplay: "true"
+	});
+});
+</script>
+</body>
+</html>
