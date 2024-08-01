@@ -1,57 +1,97 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<meta name="theme-color" content="#f4000b">
-<title>Escuchalo Fm</title>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://api.radioslive.stream/reproluna/luna-animado.js"></script>
+<title>SISTEMAS SUREÑOS - VICTOR MANUEL ZAMBRANO</title>
+<link rel="shortcut icon" href="" type="image/x-icon">
+<link rel="icon" href="" type="image/x-icon">
 <style>
-html,body{font-family:"Open Sans",sans-serif;height:100%;margin:0;display:flex;flex-direction:column;color:#272829}a{text-decoration:none;color:rgba(255,255,255,1)}a:hover{color:rgba(255,255,255,1);text-decoration:none}#header{position:fixed;top:0;left:0;z-index:100;transition:all .5s;overflow-y:auto;background:rgba(255,255,255,0);padding:20px 20px 0}.nav-menu *{margin:0;padding:0;list-style:none}.nav-menu > ul > li{position:relative;white-space:nowrap}.nav-menu a{display:flex;align-items:center;color:red;padding-left:18px;margin-bottom:8px;transition:.3s;font-size:15px;border-radius:50px;background:#f2f3f5;height:46px;width:100%;overflow:hidden;transition:.3s}.nav-menu a i{font-size:16px}.nav-menu a span{padding:0 5px 0 7px;color:#000}.nav-menu li:hover > a{color:blue;background:#00cc45}.nav-menu li:hover > a span{color:#fff}.mobile-nav-toggle{position:fixed;right:15px;top:15px;z-index:99;border:0;background:none;font-size:24px;transition:all .4s;outline:none!important;line-height:1;cursor:pointer;text-align:right}.mobile-nav-toggle i{color:#fff}.mobile-nav-active{overflow:hidden}.mobile-nav-active #header{left:0}.mobile-nav-active .mobile-nav-toggle i{color:#fff}#player{margin:0 auto;width:100%;height:100%}.background_hora{width:196px;height:46px;background-color:#fff;position:absolute;right:20px;bottom:100px;border-radius:50px}#relogio{margin:0;position:absolute;top:50%;left:50%;margin-right:-50%;transform:translate(-50%,-50%);font-size:30px;font-family:"Poppins",sans-serif;color:red}.back-to-top{position:fixed;display:none;width:40px;height:40px;border-radius:50px;right:15px;bottom:15px;background:#3a0d5c;color:#fff;transition:display .5s ease-in-out;z-index:99999}.back-to-top i{font-size:24px;position:absolute;top:7px;left:8px}.back-to-top:hover{color:#fff;background:#0678e3;transition:background .2s ease-in-out}@media (min-width: 992px){.mobile-nav-toggle{display:none}}@media (max-width: 991px){#header{width:auto;background:#fff;border-right:1px solid #e6e9ec;left:-300px;padding:20px 30px 100vh 10px}}@media only screen and (max-width: 768px){#player{width:100%;height:100%}.background_hora{display:none}#relogio{display:none}}
+	html, body {
+		margin:0;
+		padding:0;
+		width:100%;
+		height:100%;
+	}
+	.fs-vid-background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 2;
+	}
+	.fs-vid-background video {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+	video {
+		max-width: 100%;
+	}
 </style>
-</head>
-
-<body>
-<div style="height:100%">
-
-<div id="player"></div>
 <script>
-$("#player").lunaradio({
-radioname: "Onda Cero - Leyendas", 
-streamurl: "https://mdstrm.com/audio/6598b7aa2d0a19028625b2a7/icecast.audio", 
-coverimage: "https://www.epafm.pe/images/logo_onda-cero-leyendas.png",
-volume:"100", autoplay:"true", 
-onlycoverimage:"false", coverstyle:"animated", usevisualizer:"real", visualizertype:"4",
-userinterface:"big", backgroundcolor:"#000000", fontcolor:"#ffffff", hightlightcolor:"#000000", fontname:"Roboto", googlefont:"", fontratio:"0.7", scroll:"true", displayliveicon:"true", visualizeropacity:"1.0", multicolorvisualizer:"true", color1:"#FFC300", color2:"#FFC300", color3:"#FFC300", color4:"#FFC300", metadatainterval:"20000", 
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
 });
+document.onkeydown = function(e) {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.key === 'U')) {
+    return false;
+  }
+};
 </script>
-
-
-
-
-
-
-
-<div class="background_hora"><div id="relogio">15:00:05</div></div>
-<script>
-function reloj() {
-let elementoID = document.getElementById('relogio');
-let horalocal = new Date().toLocaleTimeString('es');
-elementoID.innerHTML = horalocal;
-}
-setInterval(reloj, 1000);
-</script>
+</head>
+<body>
+<div class="fs-vid-background">
+<video autoplay="true" muted="true" loop="true">
+<source src="https://i.imgur.com/lRiTilk.mp4" type="video/mp4">
+</video>
+</div>
+<script src="https://radiopedregal.github.io/js/jquery-3.2.1.min.js"></script> 
+<script src="https://radiopedregal.github.io/js/lunaradio.js"></script>
+<div id="k-popradio" style="width:100%; height: 100%; position: absolute; left:0; top:0; z-index: 300;">
 </div>
 
-
-
 <script>
-$(".mobile-nav-toggle").click(function(){
-$("body").toggleClass("mobile-nav-active");
-$(".mobile-nav-toggle i").toggleClass("fa-bars fa-times");
+jQuery(document).ready(function($) {
+	$("#k-popradio").lunaradio({
+		userinterface: "big",
+		backgroundcolor: "rgba(9,15,25,0.8)",
+		fontcolor: "#FFFFFF",
+		hightlightcolor: "#06B703",
+		fontname: "Anton",
+		googlefont: "Anton&display=swap",
+		fontratio: "0.4",
+		radioname: "Onda Cero - Leyendas",
+		scroll: "true",
+		coverimage: "https://www.epafm.pe/images/logo_onda-cero-leyendas.png",
+		onlycoverimage: "true",
+		coverstyle: "animated",
+		usevisualizer: "real",
+		visualizertype: "6",
+		multicolorvisualizer: "true",
+		color1: "#00FF00",
+		color2: "#ffff00",
+		color3: "#FF1F6F",
+		color4: "#FF1F6F",
+		metadatatechnic: "",
+		ownmetadataurl: "",
+		streamurl: "https://mdstrm.com/audio/6598b7aa2d0a19028625b2a7/icecast.audio",
+		streamtype: "icecast2",
+		idzeno: "6898b6e52d9e088a6de15",
+		icecastmountpoint: "", 
+		shoutcastpath: "",
+		shoutcastid: "1",
+		streamsuffix: "",
+		radionomyid: "",
+		radionomyapikey: "",
+		radiojarid: "",
+		radiocoid: "",
+		itunestoken: "1000lIPN",
+		metadatainterval: "5000",
+		volume: "100",
+		debug: "false",
+		autoplay: "true"
+	});
 });
 </script>
 </body>
