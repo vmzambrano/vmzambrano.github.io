@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>SISTEMAS SUREÑOS - VICTOR MANUEL ZAMBRANO</title>
+<link rel="shortcut icon" href="" type="image/x-icon">
+<link rel="icon" href="" type="image/x-icon">
+<style>
+	html, body {
+		margin:0;
+		padding:0;
+		width:100%;
+		height:100%;
+	}
+	.fs-vid-background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 2;
+	}
+	.fs-vid-background video {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+	video {
+		max-width: 100%;
+	}
+</style>
+<script>
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+document.onkeydown = function(e) {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.key === 'U')) {
+    return false;
+  }
+};
+</script>
+</head>
+<body>
+<div class="fs-vid-background">
+<video autoplay="true" muted="true" loop="true">
+<source src="https://i.imgur.com/lRiTilk.mp4" type="video/mp4">
+</video>
+</div>
+<script src="https://radiopedregal.github.io/js/jquery-3.2.1.min.js"></script> 
+<script src="https://radiopedregal.github.io/js/lunaradio.js"></script>
+<div id="k-popradio" style="width:100%; height: 100%; position: absolute; left:0; top:0; z-index: 300;">
+</div>
+
+<script>
+jQuery(document).ready(function($) {
+	$("#k-popradio").lunaradio({
+		userinterface: "big",
+		backgroundcolor: "rgba(9,15,25,0.8)",
+		fontcolor: "#FFFFFF",
+		hightlightcolor: "#06B703",
+		fontname: "Anton",
+		googlefont: "Anton&display=swap",
+		fontratio: "0.4",
+		radioname: "Radio Cumbia Mix",
+		scroll: "true",
+		coverimage: "https://imgur.com/HySIusN.png",
+		onlycoverimage: "true",
+		coverstyle: "animated",
+		usevisualizer: "real",
+		visualizertype: "6",
+		multicolorvisualizer: "true",
+		color1: "#00FF00",
+		color2: "#ffff00",
+		color3: "#FF1F6F",
+		color4: "#FF1F6F",
+		metadatatechnic: "",
+		ownmetadataurl: "",
+		streamurl: "https://mdstrm.com/audio/6598b6ab95a235085823b24f/icecast.audio",
+		streamtype: "icecast2",
+		idzeno: "6898b6e52d9e088a6de15",
+		icecastmountpoint: "", 
+		shoutcastpath: "",
+		shoutcastid: "1",
+		streamsuffix: "",
+		radionomyid: "",
+		radionomyapikey: "",
+		radiojarid: "",
+		radiocoid: "",
+		itunestoken: "1000lIPN",
+		metadatainterval: "5000",
+		volume: "100",
+		debug: "false",
+		autoplay: "true"
+	});
+});
+</script>
+</body>
+</html>
