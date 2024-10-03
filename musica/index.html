@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto DJ</title>
+</head>
+<body>
+  <h1>Auto DJ - Reproducción Automática</h1>
+  
+  <audio id="audioPlayer" controls autoplay>
+    <!-- Aquí se cargará la primera canción -->
+  </audio>
+
+  <script>
+    // Lista de canciones (enlaces RAW de GitHub)
+    const playlist = [
+      'https://raw.githubusercontent.com/tu_usuario/tu_repositorio/main/canciones/cancion1.mp3',
+      'https://raw.githubusercontent.com/tu_usuario/tu_repositorio/main/canciones/cancion2.mp3',
+      'https://raw.githubusercontent.com/tu_usuario/tu_repositorio/main/canciones/cancion3.mp3',
+      // Agrega más canciones aquí
+    ];
+
+    let currentTrack = 0;
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    // Cargar la primera canción
+    audioPlayer.src = playlist[currentTrack];
+
+    // Función para pasar a la siguiente canción
+    audioPlayer.addEventListener('ended', () => {
+      currentTrack++;
+      if (currentTrack >= playlist.length) {
+        currentTrack = 0; // Volver al inicio si es la última canción
+      }
+      audioPlayer.src = playlist[currentTrack];
+      audioPlayer.play(); // Reproducir automáticamente la siguiente
+    });
+  </script>
+</body>
+</html>
