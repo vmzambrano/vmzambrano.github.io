@@ -1,8 +1,8 @@
 const metadatos = {
     duration: 0,
-    thumb: "",
-    artist: "",
-    buy_urls: "",
+    thumb: "RADIO RIBEREÑA PERÚ lA rADIO",
+    artist: "RADIO RIBEREÑA PERÚ lA rADIO",
+    buy_urls: "RADIO RIBEREÑA PERÚ lA rADIO",
     album: null,
     show: {},
     guid: null,
