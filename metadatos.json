@@ -1,0 +1,15 @@
+const metadatos = {
+    duration: 0,
+    thumb: "",
+    artist: "",
+    buy_urls: "",
+    album: null,
+    show: {},
+    guid: null,
+    sku: null,
+    title: "RADIO RIBEREÑA PERÚ lA rADIO",
+    info_urls: ""
+};
+
+console.log(metadatos);
+// Aquí puedes usar los metadatos como desees
