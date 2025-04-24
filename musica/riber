@@ -1,0 +1,20 @@
+<!-- BEGINS: AUTO-GENERATED MUSES RADIO PLAYER CODE -->
+<script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script>
+<script type="text/javascript">
+MRP.insert({
+'url':'https://vmzambrano.github.io/musica/LA-RIBEREA.mp3',
+'lang':'hy',
+'volume':100,
+'autoplay':true,
+'forceHTML5':true,
+'jsevents':true,
+'buffering':0,
+'title':'radioriberena',
+'welcome':'radioriberena',
+'wmode':'transparent',
+'skin':'neonslim',
+'width':501,
+'height':32
+});
+</script>
+<!-- ENDS: AUTO-GENERATED MUSES RADIO PLAYER CODE -->
