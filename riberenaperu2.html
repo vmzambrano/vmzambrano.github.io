@@ -159,6 +159,17 @@
       cursor: pointer;
     }
 
+    /* Girar logo del reproductor */
+    .lunaradio .coverimage {
+      animation: spin 8s linear infinite;
+      border-radius: 50%;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
     @media (min-width: 992px) {
       .mobile-nav-toggle {
         display: none;
@@ -175,12 +186,14 @@
       }
     }
 
-    /* Solución: mover el reloj cuando está en modo móvil */
+    /* Hora en la parte inferior en móviles */
     @media (max-width: 768px) {
       .background_hora {
-        top: 70px;
-        right: 10px;
-        transform: none;
+        top: auto;
+        bottom: 20px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
   </style>
@@ -212,6 +225,7 @@
     });
   </script>
 </head>
+
 <body>
 
   <!-- Reloj bonito -->
