@@ -70,7 +70,7 @@ $("#lunaradio").lunaradio({
     itunestoken: "1000lIPN",
     metadatatechnic: "",
     ownmetadataurl: "",
-    streamurl: "https://radios.yanapak.org/radiopoderarequipa",
+    streamurl: "https://radios.yanapak.org/victoriacamana",
     streamtype: "icecast2", //soporta: zeno, icecast2, shoutcast2
     idzeno: "",
     icecastmountpoint: "",
