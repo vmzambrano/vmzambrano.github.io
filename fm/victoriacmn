@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Native Flash Radio V5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="CACHE-CONTROL" CONTENT="NO-CACHE">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://victormusicperu.github.io/js/lunaradio-animado.js"></script>
+<style>
+html, body {
+    background: #ffffff; /* Fondo blanco */
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+}
+
+#lunaradio {
+    width: 100%;
+    height: 70px;
+    -webkit-border-top-left-radius: 60px;
+    -webkit-border-top-right-radius: 0px;
+    -webkit-border-bottom-right-radius: 60px;
+    -webkit-border-bottom-left-radius: 60px;
+    -moz-border-radius-topleft: 60px;
+    -moz-border-radius-topright: 60px;
+    -moz-border-radius-bottomright: 60px;
+    -moz-border-radius-bottomleft: 60px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border: none;
+}
+</style>
+</head>
+<body>
+<div id="lunaradio"></div>
+<script>
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+document.onkeydown = function(e) {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.key === 'U')) {
+    return false;
+  }
+};
+
+$("#lunaradio").lunaradio({
+    userinterface: "small",
+    backgroundcolor: "#f3d131",
+    fontcolor: "#ffffff",
+    hightlightcolor: "#000000",
+    fontname: "Anton",
+    googlefont: "Anton&display=swap",
+    fontratio: "0.4",
+    radioname: "Radio Poder Arequipa",
+    scroll: "true",
+    coverimage: "https://imgur.com/O8sa01y.png",
+    onlycoverimage: "false",
+    coverstyle: "animated",
+    usevisualizer: "real",
+    visualizertype: "4",
+    itunestoken: "1000lIPN",
+    metadatatechnic: "",
+    ownmetadataurl: "",
+    streamurl: "https://radios.yanapak.org/radiopoderarequipa",
+    streamtype: "icecast2", //soporta: zeno, icecast2, shoutcast2
+    idzeno: "",
+    icecastmountpoint: "",
+    radionomyid: "",
+    radionomyapikey: "",
+    radiojarid: "",
+    radiocoid: "2u0rq11yty8uv",
+    shoutcastpath: "/live",
+    shoutcastid: "1",
+    streamsuffix: "",
+    metadatainterval: "10000",
+    volume: "100",
+    autoplay: "true",
+    debug: "false",
+    usestreamcorsproxy: "true"
+});
+</script>
+</body>
+</html>
