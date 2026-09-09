@@ -1,168 +1,253 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SISTEMAS SUREÑOS</title>
-  <meta name="theme-color" content="#f4000b"> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SISTEMAS SUREÑOS · Radio La Ribereña</title>
+  <meta name="theme-color" content="#005cff" />
+  <meta name="description" content="Escucha Radio La Ribereña Lima en vivo. Música, entretenimiento y más." />
 
-  <!-- Fuentes e íconos -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts + Font Awesome + jQuery + reproductor -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://victormusicperu.github.io/js/lunaradio-animado.js"></script>
 
-  <!-- Estilos personalizados -->
   <style>
-    html, body {
-      font-family: "Open Sans", sans-serif;
+    /* ----- RESET & BASE ----- */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
       height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #0b0f18;
+      color: #f0f0f0;
       display: flex;
       flex-direction: column;
-      color: #272829;
+      overflow-x: hidden;
     }
 
     a {
       text-decoration: none;
-      color: #ffffff;
+      color: inherit;
     }
 
-    a:hover {
-      color: #ffffff;
-      text-decoration: none;
-    }
-
+    /* ----- HEADER / MENÚ LATERAL ----- */
     #header {
       position: fixed;
       top: 0;
-      left: 0;
-      z-index: 100;
-      transition: all .5s;
+      left: -300px;
+      width: 280px;
+      height: 100vh;
+      background: rgba(15, 20, 30, 0.96);
+      backdrop-filter: blur(8px);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 30px 18px 40px 18px;
+      transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 1000;
       overflow-y: auto;
-      background: rgba(255,255,255,0);
-      padding: 20px 20px 0;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 4px 0 30px rgba(0, 0, 0, 0.6);
     }
 
-    .nav-menu * {
-      margin: 0;
-      padding: 0;
+    #header::-webkit-scrollbar {
+      width: 4px;
+    }
+    #header::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #header::-webkit-scrollbar-thumb {
+      background: #005cff;
+      border-radius: 8px;
+    }
+
+    .nav-menu ul {
       list-style: none;
-    }
-
-    .nav-menu > ul > li {
-      position: relative;
-      white-space: nowrap;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 20px;
     }
 
     .nav-menu a {
       display: flex;
       align-items: center;
-      color: red;
-      padding-left: 18px;
-      margin-bottom: 8px;
+      gap: 14px;
+      padding: 12px 18px;
+      border-radius: 60px;
       font-size: 15px;
-      border-radius: 50px;
-      background: #f2f3f5;
-      height: 46px;
-      width: 100%;
-      transition: .3s;
+      font-weight: 500;
+      color: #cfd8e6;
+      background: rgba(255, 255, 255, 0.04);
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
     }
 
     .nav-menu a i {
-      font-size: 16px;
+      width: 22px;
+      font-size: 18px;
+      text-align: center;
+      color: #005cff;
+      transition: transform 0.2s;
     }
 
     .nav-menu a span {
-      padding: 0 5px 0 7px;
-      color: #000;
+      flex: 1;
     }
 
-    .nav-menu li:hover > a {
-      color: blue;
-      background: #00cc45;
-    }
-
-    .nav-menu li:hover > a span {
+    .nav-menu a:hover {
+      background: #005cff;
       color: #fff;
+      border-color: #005cff;
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 92, 255, 0.3);
     }
 
+    .nav-menu a:hover i {
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    /* ----- BOTÓN HAMBURGUESA ----- */
     .mobile-nav-toggle {
       position: fixed;
-      right: 15px;
-      top: 15px;
-      z-index: 99;
-      background: none;
+      top: 18px;
+      right: 20px;
+      z-index: 1100;
+      background: rgba(0, 92, 255, 0.9);
+      border: none;
+      border-radius: 60px;
+      width: 50px;
+      height: 50px;
       font-size: 24px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .mobile-nav-toggle i {
       color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0, 92, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .mobile-nav-active {
-      overflow: hidden;
+    .mobile-nav-toggle:hover {
+      background: #005cff;
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 92, 255, 0.6);
     }
 
     .mobile-nav-active #header {
       left: 0;
     }
 
-    .mobile-nav-active .mobile-nav-toggle i {
-      color: #fff;
+    .mobile-nav-active .mobile-nav-toggle {
+      right: 20px;
+      background: #1a1f2b;
     }
 
-    #player {
-      margin: 0 auto;
-      width: 100%;
-      height: 100%;
-    }
-
+    /* ----- RELOJ FLOTANTE ----- */
     .background_hora {
       position: fixed;
       top: 20px;
-      right: 20px;
-      background-color: #fff;
-      padding: 0 20px;
-      height: 46px;
-      border-radius: 50px;
+      left: 20px;
+      background: rgba(10, 14, 24, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 0 24px;
+      height: 52px;
+      border-radius: 60px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-family: 'Poppins', sans-serif;
+      gap: 14px;
+      font-family: 'Inter', sans-serif;
       font-size: 20px;
-      color: #111;
-      z-index: 9999;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      font-weight: 600;
+      color: #fff;
+      z-index: 900;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      letter-spacing: 0.5px;
     }
 
     .background_hora i {
-      color: #f4000b;
-      font-size: 22px;
+      color: #005cff;
+      font-size: 20px;
     }
 
+    .background_hora #relogio {
+      min-width: 80px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ----- BOTONERA SOCIAL (flotante derecha) ----- */
     .social-bar {
       position: fixed;
       top: 50%;
-      right: 20px;
+      right: 16px;
       transform: translateY(-50%);
-      z-index: 1000;
+      z-index: 900;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 12px;
+      background: rgba(10, 14, 24, 0.6);
+      backdrop-filter: blur(8px);
+      padding: 14px 10px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .social-icon {
-      margin-bottom: 10px;
-      cursor: pointer;
-    }
-
-    /* Girar logo del reproductor */
-    .lunaradio .coverimage {
-      animation: spin 8s linear infinite;
+    .social-bar a {
+      display: block;
+      transition: transform 0.2s ease, filter 0.2s;
       border-radius: 50%;
+      line-height: 0;
+    }
+
+    .social-bar a:hover {
+      transform: scale(1.15);
+      filter: brightness(1.3);
+    }
+
+    .social-bar img {
+      width: 32px;
+      height: 32px;
+      display: block;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px;
+    }
+
+    /* ----- REPRODUCTOR (contenedor) ----- */
+    #player {
+      flex: 1;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 40%, #141b2b, #070a12);
+    }
+
+    /* Ajustes internos del reproductor (lunaradio) */
+    .lunaradio {
+      --lr-bg: rgba(9, 15, 25, 0.75) !important;
+      backdrop-filter: blur(4px);
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+      max-width: 560px;
+      margin: 20px;
+    }
+
+    .lunaradio .coverimage {
+      animation: spin 12s linear infinite;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(0, 92, 255, 0.2), 0 0 40px rgba(0, 92, 255, 0.15);
     }
 
     @keyframes spin {
@@ -170,55 +255,131 @@
       to { transform: rotate(360deg); }
     }
 
+    /* ----- RESPONSIVE ----- */
     @media (min-width: 992px) {
       .mobile-nav-toggle {
-        display: none;
+        display: flex;
       }
-    }
-
-    @media (max-width: 991px) {
       #header {
-        width: auto;
-        background: #fff;
-        border-right: 1px solid #e6e9ec;
         left: -300px;
-        padding: 20px 30px 100vh 10px;
       }
     }
 
-    /* Hora en la parte inferior en móviles */
     @media (max-width: 768px) {
       .background_hora {
-        top: auto;
-        bottom: 20px;
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
+        top: 20px;
+        left: 20px;
+        bottom: auto;
+        transform: none;
+        height: 44px;
+        font-size: 16px;
+        padding: 0 16px;
+        gap: 10px;
+        background: rgba(10, 14, 24, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .background_hora i {
+        font-size: 16px;
+      }
+
+      .background_hora #relogio {
+        min-width: 70px;
+        font-size: 15px;
+      }
+
+      .social-bar {
+        right: 8px;
+        padding: 10px 6px;
+        gap: 10px;
+        background: rgba(10, 14, 24, 0.7);
+      }
+
+      .social-bar img {
+        width: 26px;
+        height: 26px;
+      }
+
+      #header {
+        width: 260px;
+        left: -280px;
+        padding: 20px 14px 30px 14px;
+      }
+
+      .nav-menu a {
+        font-size: 14px;
+        padding: 10px 14px;
+      }
+
+      .lunaradio {
+        max-width: 94%;
+        margin: 10px;
+        border-radius: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .background_hora {
+        top: 14px;
+        left: 14px;
+        height: 40px;
+        font-size: 14px;
+        padding: 0 14px;
+        gap: 8px;
+        border-radius: 40px;
+      }
+      .background_hora i {
+        font-size: 14px;
+      }
+      .background_hora #relogio {
+        min-width: 60px;
+        font-size: 13px;
+      }
+      .mobile-nav-toggle {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+        top: 14px;
+        right: 14px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .background_hora {
+        top: 10px;
+        left: 10px;
+        height: 36px;
+        font-size: 12px;
+        padding: 0 10px;
+        gap: 6px;
+      }
+      .background_hora i {
+        font-size: 12px;
+      }
+      .background_hora #relogio {
+        min-width: 55px;
+        font-size: 12px;
+      }
+      .mobile-nav-toggle {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+        top: 10px;
+        right: 10px;
       }
     }
   </style>
 
-  <!-- Bloqueador anticlic derecho y combinaciones de teclas -->
+  <!-- Bloqueo de clic derecho y teclas -->
   <script>
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-      console.warn('Clic derecho bloqueado.');
-    });
-
+    document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('keydown', function(e) {
+      const blocked = ['F12', 'I', 'J', 'C', 'U', 'S', 'K'];
       if (
         e.key === 'F12' ||
-        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'K'].includes(e.key.toUpperCase())) ||
+        (e.ctrlKey && e.shiftKey && blocked.includes(e.key.toUpperCase())) ||
         (e.ctrlKey && ['U', 'S'].includes(e.key.toUpperCase()))
       ) {
-        e.preventDefault();
-        console.warn('Combinación de teclas bloqueada:', e.key);
-        return false;
-      }
-    });
-
-    document.addEventListener('keyup', function(e) {
-      if (e.key === 'F12') {
         e.preventDefault();
         return false;
       }
@@ -228,107 +389,130 @@
 
 <body>
 
-  <!-- Reloj bonito -->
+  <!-- RELOJ -->
   <div class="background_hora">
     <i class="fas fa-clock"></i>
-    <div id="relogio">15:00:05</div>
+    <span id="relogio">--:--:--</span>
   </div>
 
-  <!-- Redes sociales -->
-  <div class="social-bar">
-    <a href="https://www.facebook.com/100087593016402" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook" class="social-icon" width="30" height="30">
-    </a>
-    <a href="https://www.instagram.com/" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3955/3955024.png" alt="Instagram" class="social-icon" width="30" height="30">
-    </a>
-    <a href="https://www.tiktok.com" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/4782/4782345.png" alt="TikTok" class="social-icon" width="30" height="30">
-    </a>
-    <a href="https://api.whatsapp.com/send?phone=51941810323&text=Hola escucho la radio" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="WhatsApp" class="social-icon" width="30" height="30">
-    </a>
-    <a href="sapo" target="_blank">
-      <img src="https://imgur.com/xT1HmU6.png" alt="Twitter" class="social-icon" width="30" height="30">
-    </a>
-  </div>
+  <!-- BOTÓN MENÚ MÓVIL -->
+  <button class="mobile-nav-toggle" aria-label="Abrir menú">
+    <i class="fas fa-bars"></i>
+  </button>
 
-  <!-- Botón menú móvil -->
-  <button type="button" class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
-
-  <!-- Menú lateral -->
+  <!-- MENÚ LATERAL -->
   <header id="header">
-    <nav class="nav-menu">
+    <nav class="nav-menu" aria-label="Menú principal">
       <ul>
-        <li><a target="_blank" href="https://myradioenvivo.com/radio/radio-energia-arequipa"><i class="fab fa-google-play"></i> <span>Descarga nuestra APP</span></a></li>
-        <li><a target="_blank" href="https://api.whatsapp.com/send?phone=51941810323&text=Hola,%20quiciera%20saber%20precios%20sobre%20la%20publicidad"><i class="fas fa-bullhorn"></i><span>Publicidad</span></a></li>
-        <li><a target="_blank" href="https://www.facebook.com/100087593016402"><i class="fab fa-facebook-square"></i><span>Facebook</span></a></li>
-        <li><a target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram-square"></i><span>Instagram</span></a></li>
-        <li><a href="https://api.whatsapp.com/send?phone=51941810323&text=Hola escucho la radio" target="_blank"><i class="fab fa-whatsapp-square"></i><span>Whatsapp</span></a></li>
-        <li><a target="_blank" href="https://www.tiktok.com/"><i class="fab fa-tiktok"></i><span>TikTok</span></a></li>
+        <li><a href="https://myradioenvivo.com/radio/radio-energia-arequipa" target="_blank" rel="noopener"><i class="fab fa-google-play"></i><span>Descarga nuestra APP</span></a></li>
+        <li><a href="https://api.whatsapp.com/send?phone=51941810323&text=Hola,%20quiero%20saber%20precios%20sobre%20la%20publicidad" target="_blank" rel="noopener"><i class="fas fa-bullhorn"></i><span>Publicidad</span></a></li>
+        <li><a href="https://www.facebook.com/100087593016402" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i><span>Facebook</span></a></li>
+        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram-square"></i><span>Instagram</span></a></li>
+        <li><a href="https://api.whatsapp.com/send?phone=51941810323&text=Hola%20escucho%20la%20radio" target="_blank" rel="noopener"><i class="fab fa-whatsapp-square"></i><span>WhatsApp</span></a></li>
+        <li><a href="https://www.tiktok.com/" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i><span>TikTok</span></a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Reproductor -->
+  <!-- REPRODUCTOR CON CONFIGURACIÓN PARA RADIOSTREAMING.PRO -->
   <div id="player"></div>
+
   <script>
     $("#player").lunaradio({
       userinterface: "big",
       backgroundcolor: "rgba(9,15,25,0.8)",
       fontcolor: "#ffffff",
-      hightlightcolor: "#000000",
-      fontname: "Saira Condensed",
-      googlefont: "Saira+Condensed:wght@100",
-      fontratio: "0.4",
+      hightlightcolor: "#005cff",
+      fontname: "Inter",
+      googlefont: "Inter:wght@400;500;600",
+      fontratio: "0.45",
       radioname: "RADIO LA RIBEREÑA LIMA",
       scroll: "true",
       coverimage: "https://imgur.com/rBpJZyi.png",
       onlycoverimage: "false",
       coverstyle: "animated",
-      usevisualizer: "real", 
-      visualizertype: "2",              
-      itunestoken: "1000lIPN", 
-      metadatatechnic: "creativo-agencia-metadato",
+      usevisualizer: "real",
+      visualizertype: "2",
+      
+      // CONFIGURACIÓN PARA RADIOSTREAMING.PRO
+      metadatatechnic: "zeno",
+      idzeno: "8392",
+      streamurl: "https://radiostreaming.pro/8392/",
+      streamtype: "zeno",
+      
+      // Parámetros adicionales
+      itunestoken: "1000lIPN",
       ownmetadataurl: "https://zenoplay.zenomedia.com/api/zenofm/nowplaying/permchai7spvv",
-      streamurl: "https://radios.yanapak.org/riberenalima",
-      streamtype: "icecast2", //soporta: zeno, icecast2, shoutcast2
-idzeno: "shwkz8cme0hvv",
-icecastmountpoint: "", 
-shoutcastpath: "",
-shoutcastid: "1", 
-metadatainterval: "26000", 
-volume: "100",
-debug: "false",
-autoplay: "true",
-displayliveicon: "true",
-visualizeropacity: "1.0",
-multicolorvisualizer: "true",
-color1: "#00FF00",
-color2: "#ffff00",
-color3: "#FF1F6F",
-color4: "#FF1F6F",
-});
-</script>
-
-
-  <!-- Reloj script -->
-  <script>
-    function reloj() {
-      const hora = new Date().toLocaleTimeString('es');
-      document.getElementById('relogio').innerHTML = hora;
-    }
-    setInterval(reloj, 1000);
+      icecastmountpoint: "",
+      shoutcastpath: "",
+      shoutcastid: "1",
+      metadatainterval: "26000",
+      volume: "100",
+      debug: "false",
+      autoplay: "true",
+      displayliveicon: "true",
+      visualizeropacity: "1.0",
+      multicolorvisualizer: "true",
+      color1: "#005cff",
+      color2: "#00ccff",
+      color3: "#0044cc",
+      color4: "#0066ff",
+    });
   </script>
 
-  <!-- JS menú móvil -->
+  <!-- REDES SOCIALES (flotante) -->
+  <div class="social-bar" aria-label="Redes sociales">
+    <a href="https://www.facebook.com/100087593016402" target="_blank" rel="noopener" aria-label="Facebook">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook" loading="lazy" />
+    </a>
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+      <img src="https://cdn-icons-png.flaticon.com/512/3955/3955024.png" alt="Instagram" loading="lazy" />
+    </a>
+    <a href="https://www.tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+      <img src="https://cdn-icons-png.flaticon.com/512/4782/4782345.png" alt="TikTok" loading="lazy" />
+    </a>
+    <a href="https://api.whatsapp.com/send?phone=51941810323&text=Hola%20escucho%20la%20radio" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="WhatsApp" loading="lazy" />
+    </a>
+    <a href="#" target="_blank" rel="noopener" aria-label="Twitter">
+      <img src="https://imgur.com/xT1HmU6.png" alt="Twitter" loading="lazy" />
+    </a>
+  </div>
+
+  <!-- SCRIPTS -->
   <script>
-    $(".mobile-nav-toggle").click(function(){
-      $("body").toggleClass("mobile-nav-active");
-      $(".mobile-nav-toggle i").toggleClass("fa-bars fa-times");
+    // Reloj en tiempo real con formato HH:MM:SS
+    function actualizarReloj() {
+      const ahora = new Date();
+      const horas = String(ahora.getHours()).padStart(2, '0');
+      const minutos = String(ahora.getMinutes()).padStart(2, '0');
+      const segundos = String(ahora.getSeconds()).padStart(2, '0');
+      document.getElementById('relogio').textContent = `${horas}:${minutos}:${segundos}`;
+    }
+    actualizarReloj();
+    setInterval(actualizarReloj, 1000);
+
+    // Toggle menú móvil
+    const toggleBtn = document.querySelector('.mobile-nav-toggle');
+    toggleBtn.addEventListener('click', function() {
+      document.body.classList.toggle('mobile-nav-active');
+      const icon = this.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // Cerrar menú al hacer clic en un enlace (móvil)
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 991) {
+          document.body.classList.remove('mobile-nav-active');
+          const icon = document.querySelector('.mobile-nav-toggle i');
+          icon.classList.add('fa-bars');
+          icon.classList.remove('fa-times');
+        }
+      });
     });
   </script>
 
 </body>
 </html>
-
