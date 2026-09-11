@@ -11,7 +11,6 @@
 		padding:0;
 		width:100%;
 		height:100%;
-		/* ANTI-ROBO: evita selección de texto */
 		-webkit-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
@@ -34,7 +33,6 @@
 	video {
 		max-width: 100%;
 	}
-	/* ANTI-ROBO: evita arrastrar imágenes */
 	img {
 		-webkit-user-drag: none;
 		-khtml-user-drag: none;
@@ -44,54 +42,64 @@
 	}
 </style>
 <script>
-/* ===== ANTI-ROBO TOTAL (sin romper el reproductor) ===== */
+/* ===== ANTI-ROBO TOTAL v2 ===== */
 
-// Función auxiliar: ¿el evento ocurre dentro del reproductor?
-function isInsidePlayer(e) {
-  return e.target && e.target.closest && e.target.closest('#k-popradio');
-}
-
-// 1. Bloquear clic derecho (menú contextual) en TODA la página
+// 1. Bloquear clic derecho
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
   return false;
 });
 
-// 2. Bloquear TODAS las teclas de desarrollador, guardado e inspección
-document.onkeydown = function(e) {
-  // F12
-  if (e.key === 'F12' || e.keyCode === 123) return false;
-  // Ctrl+Shift+I / J / C / K / E / S
-  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'K' || e.key === 'E' || e.key === 'S')) return false;
-  // Ctrl+U (ver código), Ctrl+S (guardar), Ctrl+P (imprimir), Ctrl+A (seleccionar), Ctrl+C (copiar), Ctrl+X (cortar)
-  if (e.ctrlKey && (e.key === 'U' || e.key === 'S' || e.key === 'P' || e.key === 'A' || e.key === 'C' || e.key === 'X')) return false;
-  // Mac: Cmd+Option+I / J / C / U
-  if (e.metaKey && e.altKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'U')) return false;
-  // Mac: Cmd+S / U / A / C
-  if (e.metaKey && (e.key === 'S' || e.key === 'U' || e.key === 'A' || e.key === 'C')) return false;
-  // Shift+F10 (menú contextual con teclado)
-  if (e.shiftKey && e.key === 'F10') return false;
-};
+// 2. Bloquear teclas — keyCode + key
+document.addEventListener('keydown', function(e) {
+  var k = e.keyCode || e.which;
+  var key = (e.key || '').toLowerCase();
 
-// 3. Bloquear copiar, cortar y pegar en TODA la página
-document.addEventListener('copy', function(e){ e.preventDefault(); return false; });
-document.addEventListener('cut', function(e){ e.preventDefault(); return false; });
-document.addEventListener('paste', function(e){ e.preventDefault(); return false; });
+  if (k === 123 || key === 'f12') { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && e.shiftKey && (k === 73 || k === 74 || k === 67 || k === 75 || k === 69 || k === 83)) {
+    e.preventDefault(); e.stopPropagation(); return false;
+  }
+  if (e.ctrlKey && (k === 85 || key === 'u')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 83 || key === 's')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 80 || key === 'p')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 65 || key === 'a')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 67 || key === 'c')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 88 || key === 'x')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.metaKey && e.altKey && (k === 73 || k === 74 || k === 67 || k === 85)) {
+    e.preventDefault(); e.stopPropagation(); return false;
+  }
+  if (e.metaKey && (k === 83 || k === 85 || k === 65 || k === 67)) {
+    e.preventDefault(); e.stopPropagation(); return false;
+  }
+  if (e.shiftKey && k === 121) { e.preventDefault(); e.stopPropagation(); return false; }
+}, true);
 
-// 4. Bloquear arrastre de elementos en TODA la página
-document.addEventListener('dragstart', function(e){ e.preventDefault(); return false; });
-document.addEventListener('drop', function(e){ e.preventDefault(); return false; });
+// 3. Segunda capa keypress
+document.addEventListener('keypress', function(e) {
+  var k = e.keyCode || e.which;
+  if (e.ctrlKey && (k === 85 || k === 83 || k === 80 || k === 65 || k === 67 || k === 88)) {
+    e.preventDefault(); e.stopPropagation(); return false;
+  }
+}, true);
 
-// 5. Bloquear selección de texto en TODA la página
-document.addEventListener('selectstart', function(e){ e.preventDefault(); return false; });
+// 4. Bloquear copiar/cortar/pegar
+document.addEventListener('copy', function(e){ e.preventDefault(); return false; }, true);
+document.addEventListener('cut', function(e){ e.preventDefault(); return false; }, true);
+document.addEventListener('paste', function(e){ e.preventDefault(); return false; }, true);
 
-// 6. Detección de DevTools (disuasión: limpia consola constantemente)
+// 5. Bloquear arrastre
+document.addEventListener('dragstart', function(e){ e.preventDefault(); return false; }, true);
+document.addEventListener('drop', function(e){ e.preventDefault(); return false; }, true);
+
+// 6. Bloquear selección
+document.addEventListener('selectstart', function(e){ e.preventDefault(); return false; }, true);
+
+// 7. Detección DevTools
 (function() {
   var element = new Image();
   Object.defineProperty(element, 'id', {
     get: function() {
       console.clear();
-      // Si quieres que al abrir DevTools la página se vacíe, descomenta:
       // document.body.innerHTML = '<h1 style="color:red;text-align:center;">ACCESO DENEGADO</h1>';
     }
   });
@@ -101,10 +109,11 @@ document.addEventListener('selectstart', function(e){ e.preventDefault(); return
   }, 1000);
 })();
 
-// 7. Detectar si la ventana pierde foco por DevTools (extra)
-window.addEventListener('blur', function() {
-  // Solo disuasión
-  console.clear();
+// 8. Bloquear view-source:
+window.addEventListener('load', function() {
+  if (window.location.href.indexOf('view-source:') !== -1) {
+    document.body.innerHTML = '<h1 style="color:red;text-align:center;">ACCESO DENEGADO</h1>';
+  }
 });
 </script>
 </head>
@@ -141,12 +150,12 @@ jQuery(document).ready(function($) {
 		color2: "#ffff00",
 		color3: "#FF1F6F",
 		color4: "#FF1F6F",
-		metadatatechnic: "",
+		metadatatechnic: "shoutcast2",
 		ownmetadataurl: "",
 		streamurl: "https://radiostreaming.pro/8392/;",
-		streamtype: "icecast2", //soporta: zeno, icecast2, shoutcast2
+		streamtype: "shoutcast2",
 		idzeno: "1tyvqt2pgf9uv",
-		icecastmountpoint: "", 
+		icecastmountpoint: "",
 		shoutcastpath: "",
 		shoutcastid: "1",
 		streamsuffix: "",
