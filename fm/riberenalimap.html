@@ -11,6 +11,12 @@
 		padding:0;
 		width:100%;
 		height:100%;
+		/* ANTI-ROBO: evita selección de texto */
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		-webkit-touch-callout: none;
 	}
 	.fs-vid-background {
 		position: absolute;
@@ -28,16 +34,78 @@
 	video {
 		max-width: 100%;
 	}
+	/* ANTI-ROBO: evita arrastrar imágenes */
+	img {
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+		user-drag: none;
+	}
 </style>
 <script>
+/* ===== ANTI-ROBO TOTAL (sin romper el reproductor) ===== */
+
+// Función auxiliar: ¿el evento ocurre dentro del reproductor?
+function isInsidePlayer(e) {
+  return e.target && e.target.closest && e.target.closest('#k-popradio');
+}
+
+// 1. Bloquear clic derecho (menú contextual) en TODA la página
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
+  return false;
 });
+
+// 2. Bloquear TODAS las teclas de desarrollador, guardado e inspección
 document.onkeydown = function(e) {
-  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.key === 'U')) {
-    return false;
-  }
+  // F12
+  if (e.key === 'F12' || e.keyCode === 123) return false;
+  // Ctrl+Shift+I / J / C / K / E / S
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'K' || e.key === 'E' || e.key === 'S')) return false;
+  // Ctrl+U (ver código), Ctrl+S (guardar), Ctrl+P (imprimir), Ctrl+A (seleccionar), Ctrl+C (copiar), Ctrl+X (cortar)
+  if (e.ctrlKey && (e.key === 'U' || e.key === 'S' || e.key === 'P' || e.key === 'A' || e.key === 'C' || e.key === 'X')) return false;
+  // Mac: Cmd+Option+I / J / C / U
+  if (e.metaKey && e.altKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'U')) return false;
+  // Mac: Cmd+S / U / A / C
+  if (e.metaKey && (e.key === 'S' || e.key === 'U' || e.key === 'A' || e.key === 'C')) return false;
+  // Shift+F10 (menú contextual con teclado)
+  if (e.shiftKey && e.key === 'F10') return false;
 };
+
+// 3. Bloquear copiar, cortar y pegar en TODA la página
+document.addEventListener('copy', function(e){ e.preventDefault(); return false; });
+document.addEventListener('cut', function(e){ e.preventDefault(); return false; });
+document.addEventListener('paste', function(e){ e.preventDefault(); return false; });
+
+// 4. Bloquear arrastre de elementos en TODA la página
+document.addEventListener('dragstart', function(e){ e.preventDefault(); return false; });
+document.addEventListener('drop', function(e){ e.preventDefault(); return false; });
+
+// 5. Bloquear selección de texto en TODA la página
+document.addEventListener('selectstart', function(e){ e.preventDefault(); return false; });
+
+// 6. Detección de DevTools (disuasión: limpia consola constantemente)
+(function() {
+  var element = new Image();
+  Object.defineProperty(element, 'id', {
+    get: function() {
+      console.clear();
+      // Si quieres que al abrir DevTools la página se vacíe, descomenta:
+      // document.body.innerHTML = '<h1 style="color:red;text-align:center;">ACCESO DENEGADO</h1>';
+    }
+  });
+  setInterval(function() {
+    console.log(element);
+    console.clear();
+  }, 1000);
+})();
+
+// 7. Detectar si la ventana pierde foco por DevTools (extra)
+window.addEventListener('blur', function() {
+  // Solo disuasión
+  console.clear();
+});
 </script>
 </head>
 <body>
