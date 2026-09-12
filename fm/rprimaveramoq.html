@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>SISTEMAS SUREÑOS - VICTOR MANUEL ZAMBRANO</title>
+<link rel="shortcut icon" href="" type="image/x-icon">
+<link rel="icon" href="" type="image/x-icon">
+<style>
+	html, body {
+		margin:0;
+		padding:0;
+		width:100%;
+		height:100%;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		-webkit-touch-callout: none;
+	}
+	.fs-vid-background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 2;
+	}
+	.fs-vid-background video {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+	video {
+		max-width: 100%;
+	}
+	img {
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+		user-drag: none;
+	}
+</style>
+<script>
+/* ===== ANTI-ROBO TOTAL v2 ===== */
+
+// 1. Bloquear clic derecho
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+  return false;
+});
+
+// 2. Bloquear teclas — keyCode + key
+document.addEventListener('keydown', function(e) {
+  var k = e.keyCode || e.which;
+  var key = (e.key || '').toLowerCase();
+
+  if (k === 123 || key === 'f12') { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && e.shiftKey && (k === 73 || k === 74 || k === 67 || k === 75 || k === 69 || k === 83)) {
+    e.preventDefault(); e.stopPropagation(); return false;
+  }
+  if (e.ctrlKey && (k === 85 || key === 'u')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 83 || key === 's')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 80 || key === 'p')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 65 || key === 'a')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 67 || key === 'c')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.ctrlKey && (k === 88 || key === 'x')) { e.preventDefault(); e.stopPropagation(); return false; }
+  if (e.metaKey && e.altKey && (k === 73 || k === 74 || k === 67 || k === 85)) {
+    e.preventDefault(); e.stopPropagation(); return false;
+  }
+  if (e.metaKey && (k === 83 || k === 85 || k === 65 || k === 67)) {
+    e.preventDefault(); e.stopPropagation(); return false;
+  }
+  if (e.shiftKey && k === 121) { e.preventDefault(); e.stopPropagation(); return false; }
+}, true);
+
+// 3. Segunda capa keypress
+document.addEventListener('keypress', function(e) {
+  var k = e.keyCode || e.which;
+  if (e.ctrlKey && (k === 85 || k === 83 || k === 80 || k === 65 || k === 67 || k === 88)) {
+    e.preventDefault(); e.stopPropagation(); return false;
+  }
+}, true);
+
+// 4. Bloquear copiar/cortar/pegar
+document.addEventListener('copy', function(e){ e.preventDefault(); return false; }, true);
+document.addEventListener('cut', function(e){ e.preventDefault(); return false; }, true);
+document.addEventListener('paste', function(e){ e.preventDefault(); return false; }, true);
+
+// 5. Bloquear arrastre
+document.addEventListener('dragstart', function(e){ e.preventDefault(); return false; }, true);
+document.addEventListener('drop', function(e){ e.preventDefault(); return false; }, true);
+
+// 6. Bloquear selección
+document.addEventListener('selectstart', function(e){ e.preventDefault(); return false; }, true);
+
+// 7. Detección DevTools
+(function() {
+  var element = new Image();
+  Object.defineProperty(element, 'id', {
+    get: function() {
+      console.clear();
+      // document.body.innerHTML = '<h1 style="color:red;text-align:center;">ACCESO DENEGADO</h1>';
+    }
+  });
+  setInterval(function() {
+    console.log(element);
+    console.clear();
+  }, 1000);
+})();
+
+// 8. Bloquear view-source:
+window.addEventListener('load', function() {
+  if (window.location.href.indexOf('view-source:') !== -1) {
+    document.body.innerHTML = '<h1 style="color:red;text-align:center;">ACCESO DENEGADO</h1>';
+  }
+});
+</script>
+</head>
+<body>
+<div class="fs-vid-background">
+<video autoplay="true" muted="true" loop="true">
+<source src="https://i.imgur.com/lRiTilk.mp4" type="video/mp4">
+</video>
+</div>
+<script src="https://radiopedregal.github.io/js/jquery-3.2.1.min.js"></script> 
+<script src="https://radiopedregal.github.io/js/lunaradio.js"></script>
+<div id="k-popradio" style="width:100%; height: 100%; position: absolute; left:0; top:0; z-index: 300;">
+</div>
+
+<script>
+jQuery(document).ready(function($) {
+	$("#k-popradio").lunaradio({
+		userinterface: "big",
+		backgroundcolor: "rgba(9,15,25,0.8)",
+		fontcolor: "#FFFFFF",
+		hightlightcolor: "#06B703",
+		fontname: "Anton",
+		googlefont: "Anton&display=swap",
+		fontratio: "0.4",
+		radioname: "Radio Primavera Tv Moquegua",
+		scroll: "true",
+		coverimage: "https://imgur.com/wwQqKWz.png",
+		onlycoverimage: "true",
+		coverstyle: "animated",
+		usevisualizer: "real",
+		visualizertype: "6",
+		multicolorvisualizer: "true",
+		color1: "#00FF00",
+		color2: "#ffff00",
+		color3: "#FF1F6F",
+		color4: "#FF1F6F",
+		metadatatechnic: "shoutcast2",
+		ownmetadataurl: "",
+		streamurl: "https://radio.livestreamingmundial.com:7011/stream",
+		streamtype: "shoutcast2",
+		idzeno: "1tyvqt2pgf9uv",
+		icecastmountpoint: "",
+		shoutcastpath: "",
+		shoutcastid: "1",
+		streamsuffix: "",
+		radionomyid: "",
+		radionomyapikey: "",
+		radiojarid: "",
+		radiocoid: "",
+		itunestoken: "1000lIPN",
+		metadatainterval: "5000",
+		volume: "100",
+		debug: "false",
+		autoplay: "true"
+	});
+});
+</script>
+</body>
+</html>
