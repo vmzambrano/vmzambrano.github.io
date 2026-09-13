@@ -1,0 +1,32 @@
+{
+  "name": "Escúchalo FM",
+  "short_name": "EscúchaloFM",
+  "description": "Escucha tus radios favoritas de Perú en vivo",
+  "start_url": "https://escuchalofm.blogspot.com",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f12000",
+  "theme_color": "#f12000",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "https://i.imgur.com/Hblj7SQ.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.imgur.com/Hblj7SQ.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.imgur.com/Hblj7SQ.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
